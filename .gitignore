@@ -1,0 +1,75 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Rider IDE files
+.idea/
+*.iml
+
+# Rider workspace and configuration files
+/shelf/
+/workspace.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+/projectSettingsUpdater.xml
+/modules.xml
+/contentModel.xml
+*.sln.DotSettings.user
+
+# Build output directories
+/out/
+bin/
+obj/
+target/
+
+# Logs and temporary files
+logs/
+*.log
+*.pid
+
+# Dependency directories
+node_modules/
+packages/
+.vscode/
+
+# Specific OS files
+*.swp
+*.swo
+*.orig
+*.bak
+
+# JetBrains specific files
+.idea/
+*.iml
+.idea/*
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/HttpRequests/
+.idea/dataSources/
+.idea/dataSources.xml
+.idea/mongoSettings.xml
+.idea/vcs.xml
+
+# Version control related backups
+*_history/
+*.rej
+
+# Rider auto-added files
+.idea.codeStyles/
+.idea_editor_sanity/
+
+# Runtime/project-specific caches
+/.gradle/
+/target/
+/.idea_cache/
+
+# Docker and virtualization
+*.dockerignore
+Dockerfile
+docker-compose.yml
+*.vagrant
+.vagrant/
+*.terraform/

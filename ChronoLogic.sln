@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3BDE8685-95AD-4F26-B6FB-B8EFBF007AE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoLogic.Api", "src\ChronoLogic.Api\ChronoLogic.Api.csproj", "{D4F52509-8AE4-483E-9241-CB79B74983EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{B9EE1F74-BAD9-4FEE-827C-B4FAD707275A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoLogic.Api.Client.Generator", "src\client\ChronoLogic.Api.Client.Generator\ChronoLogic.Api.Client.Generator.csproj", "{0503A708-2BC2-413B-9EE8-1EBD570B427C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoLogic.Api.Client", "src\client\ChronoLogic.Api.Client\ChronoLogic.Api.Client.csproj", "{35A30200-ADE9-490F-8E6A-6294D6608368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoLogic.Api.Core", "src\ChronoLogic.Api.Core\ChronoLogic.Api.Core.csproj", "{1D892989-A684-47A6-B088-B5C1DCBC0A20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoLogic.Api.Persistence", "src\ChronoLogic.Api.Persistence\ChronoLogic.Api.Persistence.csproj", "{45F40CC6-FB62-4F73-8CC5-CD9DA0CAEAD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4F52509-8AE4-483E-9241-CB79B74983EE} = {3BDE8685-95AD-4F26-B6FB-B8EFBF007AE7}
+		{B9EE1F74-BAD9-4FEE-827C-B4FAD707275A} = {3BDE8685-95AD-4F26-B6FB-B8EFBF007AE7}
+		{0503A708-2BC2-413B-9EE8-1EBD570B427C} = {B9EE1F74-BAD9-4FEE-827C-B4FAD707275A}
+		{35A30200-ADE9-490F-8E6A-6294D6608368} = {B9EE1F74-BAD9-4FEE-827C-B4FAD707275A}
+		{1D892989-A684-47A6-B088-B5C1DCBC0A20} = {3BDE8685-95AD-4F26-B6FB-B8EFBF007AE7}
+		{45F40CC6-FB62-4F73-8CC5-CD9DA0CAEAD6} = {3BDE8685-95AD-4F26-B6FB-B8EFBF007AE7}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4F52509-8AE4-483E-9241-CB79B74983EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4F52509-8AE4-483E-9241-CB79B74983EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4F52509-8AE4-483E-9241-CB79B74983EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4F52509-8AE4-483E-9241-CB79B74983EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0503A708-2BC2-413B-9EE8-1EBD570B427C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0503A708-2BC2-413B-9EE8-1EBD570B427C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0503A708-2BC2-413B-9EE8-1EBD570B427C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0503A708-2BC2-413B-9EE8-1EBD570B427C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A30200-ADE9-490F-8E6A-6294D6608368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A30200-ADE9-490F-8E6A-6294D6608368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A30200-ADE9-490F-8E6A-6294D6608368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A30200-ADE9-490F-8E6A-6294D6608368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D892989-A684-47A6-B088-B5C1DCBC0A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D892989-A684-47A6-B088-B5C1DCBC0A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D892989-A684-47A6-B088-B5C1DCBC0A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D892989-A684-47A6-B088-B5C1DCBC0A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F40CC6-FB62-4F73-8CC5-CD9DA0CAEAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F40CC6-FB62-4F73-8CC5-CD9DA0CAEAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F40CC6-FB62-4F73-8CC5-CD9DA0CAEAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F40CC6-FB62-4F73-8CC5-CD9DA0CAEAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
