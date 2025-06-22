@@ -1,4 +1,9 @@
 using ChronoLogic.Api.Core.Extensions;
+using ChronoLogic.Api.Core.Services;
+using ChronoLogic.Api.Endpoints;
+using ChronoLogic.Api.Middlewares;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +17,16 @@ builder.Services
         config.Title = "ChronoLogic API";
         config.Version = "v1";
         config.Description = "OpenAPI description for ChronoLogic API";
-    });;
+        
+        config.OperationProcessors.Add(new OperationSecurityScopeProcessor("X-User-Id-Header"));
+        config.AddSecurity("X-User-Id-Header", new OpenApiSecurityScheme
+        {
+            Type = OpenApiSecuritySchemeType.ApiKey,
+            Name = "X-User-Id",
+            In = OpenApiSecurityApiKeyLocation.Header,
+            Description = "Set the user ID for API authorization."
+        });
+    });
 
 if (builder.Environment.IsDevelopment())
 {
@@ -38,5 +52,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<UserSessionMiddleware>();
+
+app.MapUserEndpoints();
+
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<ISeedService>();
+    await seeder.SeedDefaultUserAsync();
+}
 
 app.Run();

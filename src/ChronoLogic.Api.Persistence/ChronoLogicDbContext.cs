@@ -11,6 +11,7 @@ public class ChronoLogicDbContext(DbContextOptions<ChronoLogicDbContext> options
     IUserSession userSession) : DbContext(options)
 {
     public DbSet<UserEntity> Users { get; set; }
+    public DbSet<UserRoleEntity> Roles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

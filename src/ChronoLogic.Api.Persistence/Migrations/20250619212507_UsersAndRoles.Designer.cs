@@ -3,6 +3,7 @@ using System;
 using ChronoLogic.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ChronoLogic.Api.Persistence.Migrations
 {
     [DbContext(typeof(ChronoLogicDbContext))]
-    partial class ChronoLogicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250619212507_UsersAndRoles")]
+    partial class UsersAndRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

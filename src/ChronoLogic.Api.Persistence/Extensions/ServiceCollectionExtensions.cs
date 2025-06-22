@@ -1,3 +1,6 @@
+using ChronoLogic.Api.Persistence.Common;
+using ChronoLogic.Api.Persistence.Interfaces;
+using ChronoLogic.Api.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +17,10 @@ public static class ServiceCollectionExtensions
                 m.MigrationsAssembly(typeof(ChronoLogicDbContext).Assembly.GetName().Name);
                 m.UseNodaTime();
             })
-            .UseSnakeCaseNamingConvention() );
+            .UseSnakeCaseNamingConvention());
+
+        services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
+        services.AddScoped<IUserRepository, UserRepository>();
         
         return services;
     }
