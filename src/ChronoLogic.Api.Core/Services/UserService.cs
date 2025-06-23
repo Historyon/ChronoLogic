@@ -11,6 +11,7 @@ public interface IUserService
 {
     Task DeleteUserAsync(Guid userId, CancellationToken cancellationToken);
     Task<UserLoginResponse> CreateUserAsync(CreateUserRequest createUserRequest, CancellationToken cancellationToken);
+    Task<UserLoginResponse> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken);
     Task<IReadOnlyList<UserLoginResponse>> GetUsersAsync(CancellationToken cancellationToken);
 }
 
@@ -47,9 +48,18 @@ internal class UserService(IUserRepository userRepository) : IUserService
         return user.MapToUserLoginResponse();
     }
 
+    public async Task<UserLoginResponse> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        var user = await userRepository.FindWithRolesByIdAsync(userId, cancellationToken);
+        
+        if (user is null) throw new EntityNotFoundException(typeof(UserEntity), userId.ToString());
+        
+        return user.MapToUserLoginResponse();
+    }
+
     public async Task<IReadOnlyList<UserLoginResponse>> GetUsersAsync(CancellationToken cancellationToken)
     {
         return await userRepository
-            .FindAllAsync(user => user.MapToUserLoginResponse(), true, cancellationToken);
+            .FindAllAsync(user => user.MapToUserLoginResponse(), cancellationToken);
     }
 }

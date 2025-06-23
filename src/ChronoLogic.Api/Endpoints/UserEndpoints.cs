@@ -1,5 +1,7 @@
+using System.Net;
 using ChronoLogic.Api.Attributes;
 using ChronoLogic.Api.Core.Dtos.Requests;
+using ChronoLogic.Api.Core.Dtos.Responses;
 using ChronoLogic.Api.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 
@@ -18,14 +20,16 @@ internal static class UserEndpoints
                     CancellationToken cancellationToken) =>
                 {
                     var user = await userService.CreateUserAsync(createUserRequest, cancellationToken);
-                    return Results.Ok(user);
+                    return Results.Created($"/{user.UserId}", user);
                 })
             .WithMetadata(new RequireUserSessionAttribute())
             .WithOpenApi(o =>
             {
                 o.Summary = "Create a new user";
+                o.Responses.Remove(StatusCodes.Status200OK.ToString());
                 return o;
-            });
+            })
+            .Produces<UserLoginResponse>(StatusCodes.Status201Created);
         
         userGroup
             .MapGet("/", async (IUserService userService, CancellationToken cancellationToken) =>
@@ -37,7 +41,22 @@ internal static class UserEndpoints
             {
                 o.Summary = "Get all users";
                 return o;
-            });
+            })
+            .Produces<IEnumerable<UserLoginResponse>>(StatusCodes.Status200OK);
+        
+        userGroup
+            .MapGet("/{userId:guid}",
+                async (Guid userId, IUserService userService, CancellationToken cancellationToken) =>
+                {
+                    var user = await userService.GetUserByIdAsync(userId, cancellationToken);
+                    return Results.Ok(user);
+                })
+            .WithOpenApi(o =>
+            {
+                o.Summary = "Get a user";
+                return o;
+            })
+            .Produces<UserLoginResponse>(StatusCodes.Status200OK);
 
         userGroup
             .MapDelete("/{userId:guid}",
@@ -50,7 +69,9 @@ internal static class UserEndpoints
             .WithOpenApi(o =>
             {
                 o.Summary = "Delete a user";
+                o.Responses.Remove(StatusCodes.Status200OK.ToString());
                 return o;
-            });
+            })
+            .Produces(StatusCodes.Status204NoContent);
     }
 }

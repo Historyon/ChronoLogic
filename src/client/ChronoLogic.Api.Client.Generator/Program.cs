@@ -15,7 +15,8 @@ var settings = new CSharpClientGeneratorSettings
     CSharpGeneratorSettings =
     {
         Namespace = "ChronoLogic.Api.Client",
-        JsonLibrary = CSharpJsonLibrary.SystemTextJson
+        JsonLibrary = CSharpJsonLibrary.SystemTextJson,
+        GenerateNullableReferenceTypes = true
     }
 };
 

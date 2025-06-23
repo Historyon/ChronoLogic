@@ -20,32 +20,43 @@ internal class EntityRepository<TEntity>(ChronoLogicDbContext context) : IEntity
     }
 
     public async Task<TResult?> FindAsync<TResult>(Expression<Func<TEntity, TResult>> selector, 
-        Expression<Func<TEntity, bool>>? predicate, bool asNoTracking, CancellationToken cancellationToken = default)
+        Expression<Func<TEntity, bool>>? predicate, CancellationToken cancellationToken = default)
     {
         IQueryable<TEntity> query = Context.Set<TEntity>();
         
-        if (asNoTracking) query = query.AsNoTracking();
         if (predicate is not null) query = query.Where(predicate);
         
-        return await query.Select(selector).FirstOrDefaultAsync(cancellationToken);
+        return await query
+            .AsNoTracking()
+            .Select(selector)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public async Task<TResult?> FindByIdAsync<TResult>(Guid id, Expression<Func<TEntity, TResult>> selector, 
+        CancellationToken cancellationToken = default)
+    {
+        return await Context.Set<TEntity>()
+            .AsNoTracking()
+            .Where(entity => entity.Id == id)
+            .Select(selector)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<IReadOnlyList<TResult>> FindAllAsync<TResult>(Expression<Func<TEntity, TResult>> selector, 
-        bool asNoTracking, CancellationToken cancellationToken)
-        => await FindAllAsync(selector, null, asNoTracking, cancellationToken); 
-
-    public async Task<IReadOnlyList<TResult>> FindAllAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>>? predicate, CancellationToken cancellationToken)
-        => await FindAllAsync(selector, predicate, false, cancellationToken); 
+        CancellationToken cancellationToken)
+        => await FindAllAsync(selector, null, cancellationToken); 
 
     public async Task<IReadOnlyList<TResult>> FindAllAsync<TResult>(Expression<Func<TEntity, TResult>> selector, 
-        Expression<Func<TEntity, bool>>? predicate, bool asNoTracking, CancellationToken cancellationToken)
+        Expression<Func<TEntity, bool>>? predicate, CancellationToken cancellationToken)
     {
         IQueryable<TEntity> query = Context.Set<TEntity>();
         
-        if (asNoTracking) query = query.AsNoTracking();
         if (predicate is not null) query = query.Where(predicate);
         
-        return await query.Select(selector).ToListAsync(cancellationToken);   
+        return await query
+            .AsNoTracking()
+            .Select(selector)
+            .ToListAsync(cancellationToken);   
     }
     
     public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
