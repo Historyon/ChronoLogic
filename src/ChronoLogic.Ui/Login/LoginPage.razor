@@ -1,0 +1,28 @@
+@page "/Login"
+
+<div>
+    <div class="d-block pb-8">
+        <MudText Typo="Typo.h4">Anmelden</MudText>
+        <MudText Typo="Typo.subtitle1">Bitte wählen Sie Ihren Benutzer aus.</MudText>
+    </div>
+    <MudGrid>
+        @if (!_loading)
+        {
+            @foreach (var user in _users)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <LoginCard UserDisplayName="@user.Username"/>
+                </MudItem>
+            }
+        }
+        else
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudSkeleton Class="d-flex align-center justify-center mud-width-full py-16"/>
+                </MudItem>   
+            }
+        }
+    </MudGrid>
+</div>
